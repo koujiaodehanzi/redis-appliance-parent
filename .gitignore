@@ -1,0 +1,28 @@
+*.class
+*.iml
+*_dubbo.registry.properties*
+gitKey
+gitKey.pub
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# ide files #
+.classpath
+.project
+.mymetadata
+/.gradle/
+/.idea/
+/captures/
+.DS_Store
+
+# setting folders #
+.settings/
+.svn/
+.bin/
+target/
+build/
+META-INF
+.idea/
