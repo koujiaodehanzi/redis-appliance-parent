@@ -12,6 +12,7 @@ import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.integration.redis.util.RedisLockRegistry;
 
 /**
  * @author 抠脚的汉子
@@ -48,6 +49,16 @@ public class RedisConfig {
         container.setConnectionFactory(factory);
         container.addMessageListener(redisListener, new PatternTopic("redis-channel"));
         return container;
+    }
+
+    /**
+     * 引入分布式锁，解决消费者消费顺序问题
+     * @param factory
+     * @return
+     */
+    @Bean
+    public RedisLockRegistry redisLockRegistry(RedisConnectionFactory factory) {
+        return new RedisLockRegistry(factory, "demo-lock",60);
     }
 
 }
